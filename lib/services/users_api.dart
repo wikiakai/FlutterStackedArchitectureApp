@@ -1,4 +1,5 @@
-import 'package:app_networking/services/user_model.dart';
+import '../../../models/user_model.dart';
+
 import 'package:dio/dio.dart';
 import 'dart:developer' as developer;
 
@@ -6,7 +7,7 @@ class UserApi {
   final List<UserModel> users = []; //variabel kosong untuk menampung list
   final _dio = Dio();
 
-  getUsers() async {
+  Future<List<UserModel>> getUsers() async {
     // setState(() => _isloading = true);
 
     try {
@@ -21,6 +22,7 @@ class UserApi {
     } catch (e) {
       developer.log(e.toString());
       // setState(() => _isloading = false);
+      return [];
     }
   }
 

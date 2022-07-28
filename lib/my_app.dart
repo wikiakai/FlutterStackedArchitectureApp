@@ -1,3 +1,4 @@
+import 'package:app_networking/ui/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pages/my_home_page.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
             color: Color(0xfff4a261),
           ),
           fontFamily: GoogleFonts.manrope().fontFamily),
-      home: const MyHomePage(title: 'Networking App'),
+      home: const HomeView(),
     );
   }
 }

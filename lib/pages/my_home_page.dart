@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _isloading = true;
     });
 
-    _users = await _userApi.getUsers();
+    _users = (await _userApi.getUsers()).cast<UserModel>();
 
     setState(() {
       _isloading = false;

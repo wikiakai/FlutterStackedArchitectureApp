@@ -78,17 +78,17 @@ class _AddDataState extends State<AddData> {
                     children: [
                       ElevatedButton.icon(
                         onPressed: () async {
-                          UserModel? result = await _addUsers.addUsers(
-                            firstNameController.text,
-                            lastNameController.text,
-                            emailController.text,
-                          );
+                          // UserModel? result = await _addUsers.addUsers(
+                          //   firstNameController.text,
+                          //   lastNameController.text,
+                          //   emailController.text,
+                          // );
 
-                          if (result != null) {
-                            setState(() {
-                              _newUsers = result;
-                            });
-                          }
+                          // if (result != null) {
+                          //   setState(() {
+                          //     _newUsers = result;
+                          //   });
+                          // }
                         },
                         icon: const Icon(Icons.send_outlined),
                         label: const Text('Send Data'),
@@ -97,16 +97,16 @@ class _AddDataState extends State<AddData> {
                       ),
                       ElevatedButton.icon(
                         onPressed: () async {
-                          UserModel? result = await _addUsers.addUsers(
-                            firstNameController.text,
-                            lastNameController.text,
-                            emailController.text,
-                          );
-                          if (result != null) {
-                            setState(() {
-                              _newUsers = result;
-                            });
-                          }
+                          // UserModel? result = await _addUsers.addUsers(
+                          //   firstNameController.text,
+                          //   lastNameController.text,
+                          //   emailController.text,
+                          // );
+                          // if (result != null) {
+                          //   setState(() {
+                          //     _newUsers = result;
+                          //   });
+                          // }
                         },
                         icon: const Icon(Icons.update),
                         label: const Text('Update Data'),
