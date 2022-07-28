@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import '../services/user_model.dart';
-import '../services/users_api.dart';
+import 'package:stacked/stacked.dart';
 
-class AddData extends StatefulWidget {
-  const AddData({Key? key}) : super(key: key);
+import '../../../models/user_model.dart';
+import 'add_data_viewmodel.dart';
+
+class AddDataView extends ViewModelBuilderWidget<AddDataViewModel> {
+  AddDataView({Key? key}) : super(key: key);
 
   @override
-  State<AddData> createState() => _AddDataState();
-}
-
-class _AddDataState extends State<AddData> {
-  final _addUsers = UserApi();
-  UserModel? _newUsers;
+  viewModelBuilder(BuildContext context) => AddDataViewModel();
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(
+      BuildContext context, AddDataViewModel viewModel, Widget? child) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Add Data'),
@@ -77,48 +75,27 @@ class _AddDataState extends State<AddData> {
                     // mainAxisAlignment: MainAxisAlignment.spaceAround
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () async {
-                          // UserModel? result = await _addUsers.addUsers(
-                          //   firstNameController.text,
-                          //   lastNameController.text,
-                          //   emailController.text,
-                          // );
-
-                          // if (result != null) {
-                          //   setState(() {
-                          //     _newUsers = result;
-                          //   });
-                          // }
-                        },
+                        onPressed: () => viewModel.addUser(
+                            firstNameController.text,
+                            lastNameController.text,
+                            emailController.text),
                         icon: const Icon(Icons.send_outlined),
                         label: const Text('Send Data'),
                         style: ElevatedButton.styleFrom(
                             primary: const Color(0xff264653)),
                       ),
                       ElevatedButton.icon(
-                        onPressed: () async {
-                          // UserModel? result = await _addUsers.addUsers(
-                          //   firstNameController.text,
-                          //   lastNameController.text,
-                          //   emailController.text,
-                          // );
-                          // if (result != null) {
-                          //   setState(() {
-                          //     _newUsers = result;
-                          //   });
-                          // }
-                        },
+                        onPressed: () => viewModel.addUser(
+                            firstNameController.text,
+                            lastNameController.text,
+                            emailController.text),
                         icon: const Icon(Icons.update),
                         label: const Text('Update Data'),
                         style: ElevatedButton.styleFrom(
                             primary: const Color(0xff2a9d8f)),
                       ),
                       ElevatedButton.icon(
-                        onPressed: () {
-                          setState(() {
-                            _newUsers = null;
-                          });
-                        },
+                        onPressed: viewModel.deleteUser,
                         icon: const Icon(Icons.delete_outline),
                         label: const Text('Delete Data'),
                         style: ElevatedButton.styleFrom(
@@ -132,7 +109,7 @@ class _AddDataState extends State<AddData> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      if (_newUsers != null)
+                      if (viewModel.newUser != null)
                         Card(
                           color: const Color(0xffe63946),
                           child: Padding(
@@ -141,18 +118,18 @@ class _AddDataState extends State<AddData> {
                             child: Column(
                               children: [
                                 Text(
-                                  '${_newUsers?.firstName}',
+                                  '${viewModel.newUser?.firstName}',
                                   style: const TextStyle(
                                       color: Color(0xffffc300),
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                Text('${_newUsers?.lastName}',
+                                Text('${viewModel.newUser?.lastName}',
                                     style: const TextStyle(
                                         color: Color(0xffffc300),
                                         fontSize: 20,
                                         fontWeight: FontWeight.w400)),
-                                Text('${_newUsers?.email}',
+                                Text('${viewModel.newUser?.email}',
                                     style: const TextStyle(
                                         color: Color(0xffffc300),
                                         fontSize: 18,

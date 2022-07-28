@@ -1,3 +1,4 @@
+import 'package:app_networking/ui/views/add_data/add_data_view.dart';
 import 'package:app_networking/ui/views/detail/detail_view.dart';
 import 'package:app_networking/ui/views/home/home_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel> {
       ),
       body: viewModel.isloading
           ? const Center(child: CircularProgressIndicator(color: Colors.cyan))
-          : viewModel.users.isEmpty
+          : viewModel.users.isNotEmpty
               ? ListView.separated(
                   padding: const EdgeInsets.all(20),
                   itemCount: viewModel.users.length,
@@ -52,7 +53,7 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel> {
                   },
                   separatorBuilder: (context, index) => const Divider(),
                 )
-              : const Text('Hit the button'),
+              : const Center(child: Text('Please Hit the button')),
       persistentFooterButtons: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -63,8 +64,8 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel> {
                 label: const Text('Home')),
             ElevatedButton.icon(
                 onPressed: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => const AddData()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddDataView()));
                 },
                 icon: const Icon(Icons.add),
                 label: const Text('Add data')),

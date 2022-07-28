@@ -8,12 +8,15 @@ class HomeViewModel extends BaseViewModel {
 
   List<UserModel> users = [];
 
-  void getUsers() async {
+  Future getUsers() async {
     isloading = true;
     notifyListeners();
+
     users = await userApi.getUsers();
 
     isloading = false;
     notifyListeners();
+
+    return users;
   }
 }
